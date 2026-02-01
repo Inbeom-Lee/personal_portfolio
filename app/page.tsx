@@ -5,6 +5,15 @@ export default function Home() {
         System Desinger
         <br />& Creative Developer
       </h1>
+      <p>Designing decision-driven digital systems — from structure to code.</p>
+      <div className="fixed w-screen h-screen top-0 left-0 pointer-events-none z-[-1] flex flex-col">
+        {Array.from({ length: 10 }).map((_, index) => (
+          <div
+            key={index}
+            className="w-full h-[10vh] bg-linear-to-b from-transparent to-neutral-200"
+          />
+        ))}
+      </div>
     </main>
   );
 }

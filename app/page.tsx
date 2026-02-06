@@ -1,19 +1,37 @@
+"use client";
+
+import { useRef } from "react";
+import { Hero } from "@/components/sections/hero";
+import { AboutTeaser } from "@/components/sections/about";
+import { WorksTeaser } from "@/components/sections/works";
+import { ContactTeaser } from "@/components/sections/contact";
+import { Footer } from "@/components/layout";
+import { PageTransition } from "@/components/ui";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
+
 export default function Home() {
+  const mainRef = useRef<HTMLElement>(null);
+  useScrollReveal(mainRef);
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-8">
-      <h1 className="text-4xl font-bold">
-        System Desinger
-        <br />& Creative Developer
-      </h1>
-      <p>Designing decision-driven digital systems — from structure to code.</p>
-      <div className="fixed w-screen h-screen top-0 left-0 pointer-events-none z-[-1] flex flex-col">
-        {Array.from({ length: 10 }).map((_, index) => (
-          <div
-            key={index}
-            className="w-full h-[10vh] bg-linear-to-b from-transparent to-neutral-200"
-          />
-        ))}
-      </div>
-    </main>
+    <>
+      <main ref={mainRef} id="main-content" className="min-h-screen">
+        <PageTransition>
+          <div data-scroll-reveal>
+            <Hero />
+          </div>
+          <div data-scroll-reveal>
+            <AboutTeaser />
+          </div>
+          <div data-scroll-reveal>
+            <WorksTeaser />
+          </div>
+          <div data-scroll-reveal>
+            <ContactTeaser />
+          </div>
+        </PageTransition>
+      </main>
+      <Footer />
+    </>
   );
 }

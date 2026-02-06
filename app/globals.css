@@ -1,9 +1,173 @@
 @import "tailwindcss";
 
-:root {
+:root,
+[data-theme="dark"] {
   --font-sans: ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", monospace;
+  --font-display: var(--font-sans);
+  --nav-height: 3.5rem;
+  /* Monochrome: near-black base */
+  --color-bg: #0a0a0c;
+  --color-surface: #121216;
+  --color-text: #fafafc;
+  --color-text-muted: #8c8c94;
+  --color-text-subtle: #6b6b74;
+  --color-text-strong: #ffffff;
+  --color-accent: #ffffff;
+}
+
+[data-theme="light"] {
+  --color-bg: #fcfcfd;
+  --color-surface: #ffffff;
+  --color-text: #121216;
+  --color-text-muted: #64646c;
+  --color-text-subtle: #8c8c94;
+  --color-text-strong: #0a0a0c;
+  --color-accent: #121216;
 }
 
 .font-sans {
   font-family: var(--font-sans);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Thin typography with wide tracking for headings / labels */
+.tracking-wide-display {
+  letter-spacing: 0.2em;
+}
+.tracking-wider-display {
+  letter-spacing: 0.28em;
+}
+
+/* Body and all text: thin + slightly wide tracking */
+body {
+  color: var(--color-text);
+  font-weight: 300;
+  letter-spacing: 0.03em;
+}
+
+p {
+  letter-spacing: 0.04em;
+}
+
+/* Custom cursor: hide default when active */
+body.custom-cursor-active,
+body.custom-cursor-active * {
+  cursor: none !important;
+}
+
+/* Focus visible for accessibility */
+a:focus-visible,
+button:focus-visible {
+  outline: 1px solid var(--color-text-muted);
+  outline-offset: 2px;
+}
+
+/* Hero rotating line fade-in */
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-rotating {
+  animation: heroFadeIn 0.5s ease-out forwards;
+}
+
+/* Slide-over from right */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.3s ease-out forwards;
+}
+
+/* View Transitions API Styles */
+@view-transition {
+  navigation: auto;
+}
+
+/* Smooth fade transition between pages */
+::view-transition-old(root) {
+  animation:
+    2000ms cubic-bezier(0.4, 0, 0.2, 1) both fade-out,
+    1500ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-top;
+}
+
+::view-transition-new(root) {
+  animation:
+    2000ms cubic-bezier(0.4, 0, 0.2, 1) both fade-in,
+    1500ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-bottom;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slide-to-top {
+  to {
+    transform: translateY(-50%) scale(0.5);
+  }
+}
+@keyframes slide-from-bottom {
+  from {
+    transform: translateY(50%) scale(1.5);
+  }
+}
+
+/* Knockout Text Gradient Animation */
+@keyframes knockout-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Split-Flap Display Animation */
+@keyframes split-flap {
+  0% {
+    transform: rotateX(0deg);
+  }
+  50% {
+    transform: rotateX(-90deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+.split-flap-flip {
+  animation: split-flap 0.1s ease-in-out;
 }

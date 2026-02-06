@@ -33,11 +33,13 @@ Open [http://localhost:3000](http://localhost:3000).
 ## Project structure
 
 - `app/` – App Router pages and layout
-- `components/` – React components  
-  - `ClientOnly` – wrapper for client-only content (e.g. GSAP)
-  - `Scene` / `SceneImpl` – lazy-loaded Three.js canvas (use `<Scene>` in pages)
-- `hooks/` – e.g. `useIsClient` for GSAP/Three after hydration
-- `lib/` – utilities and font config
+- `components/` – React components (see `components/README.md` for structure)
+  - `layout/` – Nav, Footer, ThemeProvider, SkipLink
+  - `sections/` – Hero, About, Works, Contact, TechStack
+  - `ui/` – CustomCursor, ImageRipple, PageBackground, PageTransition
+- `hooks/` – `useScrollReveal`, `useScrollProgress`
+- `lib/` – utilities (GSAP, fonts)
+- `data/` – `works.ts`, `techStack.ts`
 - `public/fonts/` – put your `.woff2` / `.woff` / `.ttf` here
 
 ## Fonts
@@ -48,8 +50,8 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Animation and 3D
 
-- **GSAP**: Use in `"use client"` components. For layout/scroll effects, run after mount (e.g. with `useIsClient()` or `useEffect`).
-- **Three.js**: Use the `<Scene>` component so the canvas is lazy-loaded and not rendered on the server. Put R3F content as children of `<Scene>`.
+- **GSAP**: Use in `"use client"` components. Scroll reveals use `useScrollReveal()` hook. See `lib/gsap.ts` for utilities.
+- **Three.js**: Canvas components are lazy-loaded with `dynamic()` from `next/dynamic`. See `components/sections/hero/HeroScene.tsx` and `components/ui/PageBackground.tsx` for examples.
 
 ## License
 

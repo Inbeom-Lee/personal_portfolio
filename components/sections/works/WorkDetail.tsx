@@ -56,8 +56,11 @@ export function WorkDetail({ work }: WorkDetailProps) {
       </div>
 
       {heroImage && (
-        <div className="relative mt-10 w-full px-4 sm:px-6 md:px-8 lg:px-10 md:mt-14">
-          <div className="relative w-full overflow-hidden rounded-lg border border-white/5 bg-(--color-bg)/80" style={{ aspectRatio: "16/10" }}>
+        <div className="relative mt-10 w-full px-4 sm:px-6 md:mt-14 md:px-8 lg:px-10">
+          <div
+            className="relative w-full overflow-hidden rounded-lg border border-white/5 bg-(--color-bg)/80"
+            style={{ aspectRatio: "16/10" }}
+          >
             <Image
               src={heroImage}
               alt=""
@@ -70,7 +73,7 @@ export function WorkDetail({ work }: WorkDetailProps) {
         </div>
       )}
 
-      <div className="w-full px-4 sm:px-6 md:px-8 lg:px-10">
+      <div className="w-full max-w-4xl px-4 sm:px-6 md:px-8 lg:px-10">
         {work.overview && (
           <Section title="Overview">
             <p>{work.overview}</p>
@@ -101,7 +104,9 @@ export function WorkDetail({ work }: WorkDetailProps) {
             )}
           </Section>
         )}
+      </div>
 
+      <div className="w-full px-4 sm:px-6 md:px-8 lg:px-10">
         {work.images && work.images.length === 4 && (
           <Section title="Gallery">
             <div className="grid grid-cols-2 gap-3 md:gap-4">
@@ -123,7 +128,9 @@ export function WorkDetail({ work }: WorkDetailProps) {
             </div>
           </Section>
         )}
+      </div>
 
+      <div className="w-full px-4 sm:px-6 md:px-8 lg:px-10">
         {work.tech && work.tech.length > 0 && (
           <Section title="Tech & tools">
             <ul className="flex flex-wrap gap-2">
@@ -138,27 +145,27 @@ export function WorkDetail({ work }: WorkDetailProps) {
             </ul>
           </Section>
         )}
-
-        <footer className="pt-10 md:pt-14">
-          {work.link && work.link !== "#" && (
-            <a
-              href={work.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 font-mono text-sm font-light tracking-[0.2em] text-(--color-accent) underline-offset-4 hover:underline"
-            >
-              View project →
-            </a>
-          )}
-          <button
-            type="button"
-            onClick={() => push("/works")}
-            className="mt-6 inline-block font-mono text-sm font-light tracking-[0.2em] text-(--color-text-subtle) transition-colors hover:text-(--color-accent)"
-          >
-            ← Back to all works
-          </button>
-        </footer>
       </div>
+
+      <footer className="w-full px-4 pt-10 pb-32 sm:px-6 md:px-8 md:pt-14 lg:px-10">
+        {work.link && work.link !== "#" && (
+          <a
+            href={work.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 font-mono text-sm font-light tracking-[0.2em] text-(--color-accent) underline-offset-4 hover:underline"
+          >
+            View project →
+          </a>
+        )}
+        <button
+          type="button"
+          onClick={() => push("/works")}
+          className="mt-6 inline-block font-mono text-sm font-light tracking-[0.2em] text-(--color-text-subtle) transition-colors hover:text-(--color-accent)"
+        >
+          ← Back to all works
+        </button>
+      </footer>
     </article>
   );
 }
